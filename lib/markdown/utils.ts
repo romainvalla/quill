@@ -21,13 +21,11 @@ marked.use({
       return `<pre${langAttr}><code${lang ? ` class="language-${lang}"` : ""}>${escaped}</code></pre>`
     },
     listitem(item) {
-      // GFM task list items
-      const text = this.parser.parse(item.tokens)
+      // GFM: Marked already emits the checkbox from item.tokens; only wrap with class.
       if (item.task) {
-        const checked = item.checked ? " checked" : ""
-        return `<li class="task-list-item"><input type="checkbox" disabled${checked}/> <span>${text}</span></li>`
+        return `<li class="task-list-item">${this.parser.parse(item.tokens)}</li>`
       }
-      return `<li>${text}</li>`
+      return false
     },
     list(token) {
       const ordered = token.ordered
