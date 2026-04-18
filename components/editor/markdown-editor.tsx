@@ -46,7 +46,12 @@ export function MarkdownEditor() {
   const [confirmOpen, setConfirmOpen] = React.useState(false)
 
   const { resolvedTheme, setTheme } = useTheme()
+  const [themeReady, setThemeReady] = React.useState(false)
   const editorRef = React.useRef<EditorPaneHandle>(null)
+
+  React.useEffect(() => {
+    setThemeReady(true)
+  }, [])
 
   // Hydrate from localStorage
   React.useEffect(() => {
@@ -158,7 +163,8 @@ export function MarkdownEditor() {
   )
 
   const handleThemeToggle = React.useCallback(() => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark")
+    const current = resolvedTheme ?? "light"
+    setTheme(current === "dark" ? "light" : "dark")
   }, [resolvedTheme, setTheme])
 
   // Keyboard shortcuts (Cmd/Ctrl + B / I / K)
@@ -192,7 +198,7 @@ export function MarkdownEditor() {
         onExport={handleExport}
         viewMode={viewMode}
         onViewModeChange={setViewMode}
-        theme={resolvedTheme}
+        theme={themeReady ? resolvedTheme : undefined}
         onThemeToggle={handleThemeToggle}
       />
 

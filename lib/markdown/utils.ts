@@ -48,6 +48,7 @@ export function renderMarkdown(source: string): string {
   const raw = marked.parse(source, { async: false }) as string
   return DOMPurify.sanitize(raw, {
     ADD_ATTR: ["target", "data-lang"],
+    FORBID_TAGS: ["script", "iframe", "object", "embed"],
     ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel|data:image\/[a-z]+):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
   })
 }

@@ -37,6 +37,7 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -248,19 +249,21 @@ export function Toolbar({
             }
           />
           <DropdownMenuContent align="end" className="w-52">
-            <DropdownMenuLabel className="font-mono text-xs text-muted-foreground">
-              Export as
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => onExport("md")}>
-              <FileText className="mr-2 h-4 w-4" /> Markdown (.md)
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => onExport("html")}>
-              <FileCode className="mr-2 h-4 w-4" /> HTML (.html)
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => onExport("txt")}>
-              <FileDown className="mr-2 h-4 w-4" /> Plain text (.txt)
-            </DropdownMenuItem>
+            <DropdownMenuGroup>
+              <DropdownMenuLabel className="font-mono text-xs text-muted-foreground">
+                Export as
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => onExport("md")}>
+                <FileText className="mr-2 h-4 w-4" /> Markdown (.md)
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onExport("html")}>
+                <FileCode className="mr-2 h-4 w-4" /> HTML (.html)
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onExport("txt")}>
+                <FileDown className="mr-2 h-4 w-4" /> Plain text (.txt)
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => onExport("copy-html")}>
               <ClipboardCopy className="mr-2 h-4 w-4" /> Copy HTML
