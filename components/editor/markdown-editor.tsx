@@ -34,6 +34,7 @@ import {
   downloadFile,
   filenameFromMarkdown,
 } from "@/lib/markdown/export"
+import { APP_DEFAULT_THEME } from "@/lib/theme-default"
 
 const STORAGE_KEY = "quill.markdown.v1"
 const VIEW_KEY = "quill.view.v1"
@@ -163,9 +164,13 @@ export function MarkdownEditor() {
   )
 
   const handleThemeToggle = React.useCallback(() => {
-    const current = resolvedTheme ?? "light"
+    const current = resolvedTheme ?? APP_DEFAULT_THEME
     setTheme(current === "dark" ? "light" : "dark")
   }, [resolvedTheme, setTheme])
+
+  const toolbarTheme = themeReady
+    ? (resolvedTheme ?? APP_DEFAULT_THEME)
+    : APP_DEFAULT_THEME
 
   // Keyboard shortcuts (Cmd/Ctrl + B / I / K)
   React.useEffect(() => {
@@ -198,7 +203,7 @@ export function MarkdownEditor() {
         onExport={handleExport}
         viewMode={viewMode}
         onViewModeChange={setViewMode}
-        theme={themeReady ? resolvedTheme : undefined}
+        theme={toolbarTheme}
         onThemeToggle={handleThemeToggle}
       />
 

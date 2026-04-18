@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { APP_DEFAULT_THEME } from "@/lib/theme-default"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import "./globals.css"
 
@@ -37,7 +38,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable} h-full bg-background antialiased`}
     >
       <body className="min-h-full font-sans">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+        <ThemeProvider attribute="class" defaultTheme={APP_DEFAULT_THEME} enableSystem={false}>
           <TooltipProvider delay={200}>{children}</TooltipProvider>
         </ThemeProvider>
         {process.env.NODE_ENV === "production" ? <Analytics /> : null}

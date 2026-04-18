@@ -53,7 +53,7 @@ interface ToolbarProps {
   onExport: (kind: ExportKind) => void
   viewMode: ViewMode
   onViewModeChange: (m: ViewMode) => void
-  theme: string | undefined
+  theme: string
   onThemeToggle: () => void
 }
 
